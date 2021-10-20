@@ -23,8 +23,7 @@ class AlienInvasion:
             self.ship.update()
             self._update_screen()
     
-        
-            #Redraw the screen during each pass through the loop.
+    
             
     def _check_events(self):
         '''Respond to keypresses and mouse events.'''
