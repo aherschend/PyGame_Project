@@ -67,6 +67,8 @@ class AlienInvasion:
         '''Start a new game when the Player clicks Play.'''
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
         if button_clicked and not self.stats.game_active:
+            #Reset the game settings.
+            self.settings.initialize_dynamic_settings()   
             #Reset the game statistics.
             self.stats.reset_stats()
             self.stats.game_active = True 
@@ -131,7 +133,8 @@ class AlienInvasion:
             #Check whether the aliens group is empty
             self.bullets.empty()
             #fill the screen with aliens again
-            self._create_fleet()
+            self._create_fleet() # where the issue is
+            self.settings.increase_speed() 
 
     def _update_aliens(self):
         '''Check if the fleet is at an edge, then update the positions of all aliens in the fleet'''
@@ -199,7 +202,7 @@ class AlienInvasion:
 
     def _ship_hit(self):
         '''Respond to the ship being hit by an alien'''
-        if self.stats.ship_left > 0:
+        if self.stats.ships_left > 0:
             # Decrement ships_left.
             self.stats.ships_left -= 1
 
